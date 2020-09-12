@@ -28,7 +28,8 @@ function clickearCrearLibro(funcionCallback) {
 
 function manejadorCrearLibro() {
     const libro = crearLibro()
-    mostrarLibro(libro)
+    mostrarLibro(libro, eliminarLibro)
+    limpiaInputs()
 }
 
 clickearCrearLibro(manejadorCrearLibro)
@@ -43,4 +44,16 @@ function crearLibro() {
     miLibreria.archivo.push(nuevoLibro)
 
     return nuevoLibro
+}
+
+function eliminarLibro(dataset) {
+    const libroAEliminar = document.querySelector(`[data-libro=${dataset}]`)
+    libroAEliminar.remove()
+}
+
+function limpiaInputs() {
+    const author = document.querySelector("#input-author").value = ""
+    const title = document.querySelector("#input-title").value = ""
+    const pages = document.querySelector("#input-pages").value = ""
+    const read = document.querySelector("#input-read").checked = false
 }

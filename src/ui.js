@@ -1,8 +1,8 @@
 function mostrarLibro(libro, callbackfunction = () => { }) {
-    debugger
     const $contenedorLibros = document.querySelector("#contenedor-libros")
     const $contenedor = document.createElement("div")
     $contenedor.className = "libro"
+    $contenedor.dataset.libro = libro.title
     const $title = document.createElement("h3")
     $title.innerText = `Titulo: ${libro.title}`
     const $author = document.createElement("h3")
@@ -13,7 +13,10 @@ function mostrarLibro(libro, callbackfunction = () => { }) {
     $read.innerText = `Leido : ${libro.read ? "si" : "no"}`
     const $button = document.createElement("button")
     $button.innerText = "Eliminar"
-    $button.onclick = callbackfunction
+    debugger
+    $button.onclick = function () {
+        callbackfunction(libro.title)
+    }
     $contenedor.appendChild($title)
     $contenedor.appendChild($author)
     $contenedor.appendChild($pages)
