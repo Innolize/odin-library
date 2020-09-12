@@ -1,0 +1,22 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "libreria para odin project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Innolize/odin-library.git"
+  },
+  "author": "Roman Mettler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Innolize/odin-library/issues"
+  },
+  "homepage": "https://github.com/Innolize/odin-library#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
