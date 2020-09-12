@@ -7,7 +7,6 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
 
 <body>
@@ -17,11 +16,14 @@
             <label for="input-author">autor: <Input id="input-author" name='author'></input></label>
             <label for="input-title">titulo: <Input id="input-title" name='title'></input></label>
             <label for="input-pages">paginas: <Input id="input-pages" name='pages'></input></label>
-            <label for="input-read">leido? <Input id="input-read" name='read'></input></label>
+            <label for="input-read">leido? <Input type="checkbox" id="input-read" name='read'></input></label>
                 <button type="button" id="crear-libro">Crear libro</button>
         </form>
+        <div id="contenedor-libros">
+            <h2>Libros</h2>
+        </div>
     </div>
 </body>
-<script src="src/index.js"></script>
+<script src='src/index.js' type="module"></script>
 
 </html>

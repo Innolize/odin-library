@@ -1,4 +1,4 @@
-
+import mostrarLibro from './ui.js'
 
 class Libro {
     constructor(author, title, pages, read) {
@@ -18,24 +18,29 @@ class Libreria {
     }
 }
 
+const miLibreria = new Libreria()
+
 function clickearCrearLibro(funcionCallback) {
     const botonCrearLibro = document.querySelector("#crear-libro")
     botonCrearLibro.addEventListener("click", funcionCallback)
+
 }
+
+function manejadorCrearLibro() {
+    const libro = crearLibro()
+    mostrarLibro(libro)
+}
+
+clickearCrearLibro(manejadorCrearLibro)
 
 function crearLibro() {
     const author = document.querySelector("#input-author").value
     const title = document.querySelector("#input-title").value
     const pages = document.querySelector("#input-pages").value
-    const read = document.querySelector("#input-read").value
+    const read = document.querySelector("#input-read").checked
 
     const nuevoLibro = new Libro(author, title, pages, read)
     miLibreria.archivo.push(nuevoLibro)
-    console.log(miLibreria)
+
+    return nuevoLibro
 }
-
-clickearCrearLibro(crearLibro)
-
-const miLibreria = new Libreria()
-
-console.log(miLibreria)
