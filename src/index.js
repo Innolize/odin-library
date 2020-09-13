@@ -1,29 +1,18 @@
-import mostrarLibro from './ui.js'
+import mostrarLibro from './ui/index.js'
+import Libro from './entidades/Libro.js'
+import Libreria from './entidades/Libreria.js'
 
-class Libro {
-    constructor(author, title, pages, read) {
-        this.author = author,
-            this.title = title,
-            this.pages = pages,
-            this.read = read
-    }
+let miLibreria
+
+function inicializar() {
+    debugger
+    miLibreria = iniciarLibreria()
+    miLibreria.archivo.map(libro => mostrarLibro(libro, eliminarLibro))
 }
-
-class Libreria {
-    constructor() {
-        this.archivo = [],
-            this.agregarLibro = (libro) => {
-                this.archivo.push(libro)
-            }
-    }
-}
-
-const miLibreria = new Libreria()
 
 function clickearCrearLibro(funcionCallback) {
     const botonCrearLibro = document.querySelector("#crear-libro")
     botonCrearLibro.addEventListener("click", funcionCallback)
-
 }
 
 function manejadorCrearLibro() {
@@ -43,12 +32,17 @@ function crearLibro() {
     const nuevoLibro = new Libro(author, title, pages, read)
     miLibreria.archivo.push(nuevoLibro)
 
+    localStorage.setItem("libreria", JSON.stringify(miLibreria.archivo))
+
     return nuevoLibro
 }
 
-function eliminarLibro(dataset) {
-    const libroAEliminar = document.querySelector(`[data-libro=${dataset}]`)
+function eliminarLibro(titulo) {
+    const libroAEliminar = document.querySelector(`[data-libro=${titulo}]`)
     libroAEliminar.remove()
+    const libros = miLibreria.archivo
+    let cachelibros = libros.filter(libro => libro.title !== titulo)
+    localStorage.setItem("libreria", JSON.stringify(cachelibros))
 }
 
 function limpiaInputs() {
@@ -57,3 +51,13 @@ function limpiaInputs() {
     const pages = document.querySelector("#input-pages").value = ""
     const read = document.querySelector("#input-read").checked = false
 }
+
+function iniciarLibreria() {
+    const cache = localStorage.getItem("libreria")
+    debugger
+    const cacheParseado = JSON.parse(cache)
+
+    return new Libreria(cacheParseado)
+}
+
+inicializar()
